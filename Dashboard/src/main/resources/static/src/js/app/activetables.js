@@ -72,7 +72,7 @@ activeTable.joinCall = function(e){
 			data.bridgestate='join';
 			data.callback = 'no';
 			table.row.add(data).draw();
-			//table.row(3).remove().draw();
+		
 		}
 		
 	}

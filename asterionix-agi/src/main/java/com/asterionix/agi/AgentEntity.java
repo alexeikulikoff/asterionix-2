@@ -22,7 +22,7 @@ public class AgentEntity implements Serializable {
 	
 	private int id;
 	
-//	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+
 	@OneToMany()
 	@JoinColumn(name="agent_id")
 	private List<AgentsCoursesEntity> agentsCourses = new ArrayList<>();

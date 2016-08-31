@@ -2,7 +2,7 @@
 
 (http://www.asterionix.com)
 
-is an Open Source applicaion to run an Asterisk based call center. Asterionix consists from AGI server, Live Dashboard and Report Viewer.
+Open Source Applicaion to run  Asterisk based call center. Asterionix consists from AGI server, Live Dashboard and Report Viewer.
 
 AGI Server has to be referenced from Asterisk dialplan and allows: to handle agent's state in queues, to intercept unanswered calls and to distribute inbound calls between queues according to defined rules .
 

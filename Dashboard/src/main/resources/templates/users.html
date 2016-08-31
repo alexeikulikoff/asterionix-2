@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head  th:include="headers :: links"></head>
+<body>
+<user-page th:fragment="user">
+<br/>
+
+<div class="col-md-12">
+		<div class="btn-group" role="group" aria-label="...">
+			<button class="btn btn-primary" type="button" onclick="users.addUser()" th:text="#{button.add}" >Add User</button>
+		</div>	
+</div>
+<div class="col-md-12">
+	<br/> 
+</div>	
+<div class="col-md-12">
+<div id="addUserPanel" class="panel panel-default hidden ">
+	<div class="panel-heading"><h4 class="panel-title"><i class="fa fa-users fa-fw"></i><span data-th-text="#{label.newUser}" >New User</span></h4></div>
+		<div class="panel-body">
+		<form id="form1" >
+			<div class="row">
+			 <div class ="col-md-2"> 
+			  <span class="form-control form-label1" th:text="#{label.firstname} +':'">FName</span>
+			 </div>
+			 <div class ="input-group col-md-4">  
+			  <span class="input-group-addon" ><i class="fa fa-user fa-fw"></i></span>
+			  <input id="firstname" type="text" class="form-control" th:placeholder="#{placeholder.firstname}" aria-describedby="basic-addon1" required="required" name="firstname" />
+			 </div> 
+			</div>
+			<br/>	
+			<div class="row">
+			  <div class ="col-md-2"> 
+			    <span class="form-control form-label1" th:text="#{label.password} +':'">Password</span>
+			  </div>
+			  <div class ="input-group col-md-4">  
+				  <span class="input-group-addon" ><i class="fa fa-key fa-fw"></i></span>
+				  <input id="password" type="password" class="form-control" th:placeholder="#{placeholder.password}" aria-describedby="basic-addon1" required="required" name="password" />
+			  </div>
+			</div>
+			<br/>
+		
+			<br/>
+			
+			  <div class="input-group col-md-6 col-md-offset-2"  >
+			  	<button type="button" class="btn btn-primary"   onclick="users.save()" th:text="#{button.save}" >Save</button>
+			  	<button type="button" class="btn btn-primary "  onclick="users.close()" th:text="#{button.close}">Close</button>
+			  </div>	
+			
+			<div class="col-md-12"><br/> </div>
+		</form>
+		<br/>
+		<div id="save_message" class="alert col-md-6 hidden" role="alert"></div>
+		
+		</div>
+	</div>
+</div>
+<div id="errorUsersDiv" class="col-md-8 hidden" role="alert">
+  <div class="input-group col-md-12">
+	 <div class="alert  alert-danger alert-dismissible text-center" role="alert">
+	   <i class="fa  fa-exclamation-triangle" aria-hidden="true"></i>
+	   <span><strong>Error!&nbsp;</strong><span id="errorUsersText"></span></span>
+	</div>
+  </div>
+  <div class="input-group col-md-6 col-md-offset-4">
+	 <button type="button" class="btn btn-primary"  onclick="users.closeUserstError()" th:text="#{button.cancel}">Cancel</button>
+  </div>
+ <br/>
+</div>	
+<div class="col-md-10">
+	<div  class="panel panel-default ">
+		<div class="panel-heading"><h4 class="panel-title"><i class="fa fa-user fa-fw"></i><span th:text="#{label.users}">Users</span></h4></div>
+			<div class="panel-body">
+				<table id="tableUsers" class="table table-striped table-bordered table-hover" ></table>
+				<br/>
+				
+			</div>
+		</div> 
+	</div>  
+	
+
+<div id="warningDiv" class=" col-md-8 hidden" role="alert">
+  <div class="input-group col-md-12 ">
+	 <div class="alert alert-warning alert-dismissible text-center" role="alert">
+	   <i class="fa  fa-exclamation-triangle" aria-hidden="true"></i>
+	   <span><strong>Warning!&nbsp;</strong><span id="warningText"></span></span>
+	</div>
+  </div>
+  <div class="input-group col-md-6 col-md-offset-4">
+	 <button id="btnDelete" type="button" class="btn btn-primary" th:text="#{button.delete}">Delete</button>
+	 <button type="button" class="btn btn-primary"   onclick="users.worningCancel()" th:text="#{button.cancel}">Cancel</button>
+  </div>
+ <br/>
+</div>
+	
+			     
+					
+</user-page>	
+</body>
+</html>

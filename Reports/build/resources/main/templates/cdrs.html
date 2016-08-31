@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head  th:include="headers :: links"></head>
+<body>
+<cdr-page th:fragment="cdr">
+ <br/>
+<div class="col-md-12 dashboard-panel">
+	<div  class="panel panel-default">
+		<div class="panel-heading"><h4 class="panel-title"><i class="fa fa-database fa-fw"></i><span th:text="#{label.cdrTitle}">CDR</span></h4></div>
+			<div class="panel-body dashboard-panel">
+				<div class="panel  panel-warning">
+				
+					<div class="panel-body dashboard-panel">
+					  <form class="form-inline">
+					    <div class="input-group col-md-12">
+					      <span  class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+					      <input id="picker_from" type="text" class="form-control" name="from" />
+					      <span  class="input-group-addon "><i class="fa fa-calendar" aria-hidden="true"></i></span>
+					      <input id="picker_to" type="text" class="form-control" name="to" />
+					      <span  class="input-group-addon "><i class="fa fa-phone-square" aria-hidden="true"></i></span>
+					      <input id="src" type="text" class="form-control" name="src" placeholder="Sourse"/>
+					      <span  class="input-group-addon "><i class="fa fa-phone-square" aria-hidden="true"></i></span>
+					      <input id="dst" type="text" class="form-control" name="dst" placeholder="Destionation" />
+					      <span  class="input-group-addon "><i class="fa fa-list-ol" aria-hidden="true"></i></span>
+						  <span class="input-group-btn">
+								 <select id="pagesizeCDR" class="form-control"  >
+								   <option>100</option>
+								   <option>50</option>
+								   <option>20</option>
+								 </select>
+						  </span>
+					      <span class="input-group-btn">
+					         	<button type="button" class="btn btn-primary" onclick="reports.reportCGR('1')" th:text="#{button.apply}">Apply</button>
+					      </span>
+					    </div>
+					  </form>
+				</div>
+			</div>	
+			<br/>
+			<div id="CGRPanel" class="col-md-8 hidden">
+				<div class="panel  panel-default">
+					<div class="panel-heading" >
+					    <div class="row">
+					   		<div class="col-md-11">
+							    <h4 class="panel-title"><i class="fa fa-table fa-fw"></i><span th:text="#{label.CGR}">Table</span></h4>
+							 </div> 
+							 <div class="col-md-1">
+						 		 <i id="closeCGR" class="fa fa-times-circle fa-lg pull-right" onclick="reports.hideCGRPanel()"></i>
+						 	 </div>
+						</div>
+					</div>
+					<div class="panel-body">
+						<table id="tableConsolidate" class="table table-striped table-bordered table-hover" ></table>
+					</div>
+				</div>	
+			</div>	
+			<div id="CDRPanel" class="col-md-12 hidden">	
+		   		<div class="panel  panel-default">
+		   		
+					<div class="panel-heading" >
+					  <div class="row">
+					    <div class="col-md-11">
+						  <h4 class="panel-title"><i class="fa fa-table fa-fw"></i><span th:text="#{label.CDR}">Table</span></h4>
+						 </div> 
+						 <div class="col-md-1">
+						 	<i id="closeCDR" class="fa fa-times-circle fa-lg pull-right" onclick="reports.hideCDRPanel()"></i>
+						 </div>
+					   </div>	
+					</div>
+					<div class="panel-body">
+						<div class="col-md-12">
+							<div id="tableCDR_paginate" class="dataTables_paginate paging_simple_numbers">
+								<ul id="pageTab" class="pagination"></ul>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<table id="tableCDR" class="table table-striped table-bordered table-hover" ></table>
+						</div>
+					
+					</div>
+				</div>	
+			</div>	
+		</div>
+	</div> 
+</div> 
+
+<div id="cdr_player" class="jp-jplayer"></div>
+				
+</cdr-page>
+</body>
+</html>

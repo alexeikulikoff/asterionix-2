@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head  th:include="headers :: links"></head>
+<body>
+<agent-page th:fragment="customer">
+<br/>
+<div class="col-md-12">
+		<div class="btn-group" role="group" aria-label="...">
+			<button class="btn btn-primary" type="button" onclick="customers.addCustomer()" th:text="#{button.add}">Add</button>
+		</div>	
+</div>
+<div class="col-md-12">
+	<br/> 
+</div>	
+<div class="col-md-12">
+	<div id="addCustomerPanel" class="panel panel-default hidden ">
+	  <div class="panel-heading"><h4 class="panel-title"><i class="fa fa-users fa-fw"></i><span data-th-text="#{label.newCustomer}">New Customer</span></h4></div>
+	  <div class="panel-body">
+			<form id="formCustomer" >
+				<div class="row">
+				   <div class ="col-md-3"> 
+				  	 <span class="form-control form-label1" th:text="#{label.customerName} +':'">Customer Name</span>
+				   </div>
+				   <div class ="input-group col-md-4">  
+				   		<span class="input-group-addon" ><i class="fa fa-user fa-fw"></i></span>
+				  		<input id="new_name" type="text" class="form-control"  aria-describedby="basic-addon1" required="required" name="new_name" />
+				  </div>
+				</div>
+				<br/>
+				<div class="row">
+				   <div class ="col-md-3"> 
+				  	 <span class="form-control form-label1" th:text="#{label.number} +':'">Number</span>
+				   </div>
+				   <div class ="input-group col-md-2">  
+				   		<span class="input-group-addon" ><i class="fa fa-user fa-fw"></i></span>
+				  		<input id="new_number" type="text" class="form-control"  aria-describedby="basic-addon1" required="required" name="new_number" />
+				  </div>
+				</div>
+				<br/>
+				<div class="row">
+				   <div class ="col-md-3"> 
+				  	 <span class="form-control form-label1" th:text="#{label.queue} +':'">Queue</span>
+				   </div>
+				   <div class ="input-group col-md-2">  
+				   		<span class="input-group-addon" ><i class="fa fa-user fa-fw"></i></span>
+				  		<select id="selectQueueCustomers" class="form-control" ></select>
+				  </div>
+				</div>
+				<br/>
+			
+				<br/>
+				
+			  	  <div class="input-group col-md-6 col-md-offset-2"  >
+			  			<button type="button" class="btn btn-primary"   onclick="customers.save()" th:text="#{button.save}">Save</button>
+			  			<button type="button" class="btn btn-primary "  onclick="customers.close()" th:text="#{button.close}">Close</button>
+			  		</div>	
+				
+				<div class="col-md-12"><br/> </div>
+			</form>
+			<br/>
+			<div id="customer_save_message" class="alert col-md-6 hidden" role="alert"></div>
+		
+		</div>
+	</div>
+</div>	
+
+<div id="errorCustomerDiv" class="col-md-8 hidden" role="alert">
+  <div class="input-group col-md-12">
+	 <div class="alert alert-danger alert-dismissible text-center" role="alert">
+	   <i class="fa  fa-exclamation-triangle" aria-hidden="true"></i>
+	   <span><strong>Error!&nbsp;</strong><span id="errorCustomerText"></span></span>
+	</div>
+  </div>
+  <div class="input-group col-md-6 col-md-offset-4">
+	 <button type="button" class="btn btn-primary"  onclick="customers.closeCustomerError()" th:text="#{button.cancel}">Cancel</button>
+  </div>
+ <br/>
+</div>		
+
+<div class="col-md-12 hidden">
+		<div id="customer_save_error" class="alert alert-danger" role="alert">Alert</div>
+	</div>
+	
+	<div class="col-md-12 hidden">
+		<div id="customer_save_done" class="alert alert-success" role="alert">Alert</div>
+</div>
+		
+<div class="col-md-12">
+	<div  class="panel panel-default ">
+		<div class="panel-heading"><h4 class="panel-title"><i class="fa fa-male fa-fw"></i><span th:text="#{label.customers}">Customers</span></h4></div>
+			<div id="CustomerTableDiv" class="panel-body">
+				<table id="tableCustomers" class="table table-striped table-bordered table-hover" >
+				  <thead>
+				   <tr>
+				    
+				     <th>Name</th>
+				     <th>Number</th>
+				     <th>Queue</th>
+				     <th >ID</th>
+				     </tr>
+				  </thead>
+				</table>
+				<br/>
+			 </div>
+		</div>
+</div> 	
+
+
+
+<div id="warningCustomerDelDiv" class=" col-md-8 hidden" role="alert">
+  <div class="input-group col-md-12 ">
+	 <div class="alert alert-warning alert-dismissible text-center" role="alert">
+	   <i class="fa  fa-exclamation-triangle" aria-hidden="true"></i>
+	   <span><strong>Warning!&nbsp;</strong><span id="warningCustomerDelText"></span></span>
+	</div>
+  </div>
+  <div class="input-group col-md-6 col-md-offset-4">
+	 <button id="btnCustomerDelete" type="button" class="btn btn-primary" th:text="#{button.delete}">Delete</button>
+	 <button type="button" class="btn btn-primary"   onclick="customers.worningCancel()" th:text="#{button.cancel}">Cancel</button>
+  </div>
+ <br/>
+</div>
+
+
+	
+</agent-page>
+</body>
+</html>

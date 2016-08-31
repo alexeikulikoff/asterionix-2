@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<headers th:fragment="links"> 
+    <title data-th-text="#{app.title}">Dashboard</title>
+    <link rel="shortcut icon" href="../dist/img/favicon.png" type="image/x-icon" data-th-href="@{/dist/img/favicon.png}"/>
+   	
+   	<link type="text/css" rel="stylesheet" href="/src/css/bootstrap.min.css" data-th-href="@{/src/css/bootstrap.min.css}" />
+    <link type="text/css" rel="stylesheet" href="/src/css/starter-template.css" data-th-href="@{/src/css/starter-template.css}" />
+	<link type="text/css" rel="stylesheet" href="/src/css/jquery.datetimepicker.css" data-th-href="@{/src/css/jquery.datetimepicker.css}" />
+	<link type="text/css" rel="stylesheet" href="/src/css/font-awesome/css/font-awesome.css" data-th-href="@{/src/css/font-awesome/css/font-awesome.css}" />
+ 	<link type="text/css" rel="stylesheet" href="/src/css/starter-template.css" data-th-href="@{/src/css/starter-template.css}" />
+ 	<link type="text/css" rel="stylesheet" href="/src/css/sidebar.css" data-th-href="@{/src/css/sidebar.css}" />
+  	
+  	<script type="text/javascript" src="/dist/js/asterionix.min.js" data-th-src="@{/dist/js/asterionix.min.js}"></script> 
+ 	
+ 	<script th:inline="javascript" >
+	//<![CDATA[
+	     
+	 var $label 	= {},
+	 	 $button	={},
+	 	 $error 	= {},
+	 	 $message 	= {};
+	 
+	 	$label.data			= [[#{label.data}]];
+	 	$label.name			= [[#{label.name}]];
+	 	$label.action		= [[#{label.action}]];
+	 	$label.id		 	= [[#{label.id}]];
+	 	$label.firstname 	= [[#{label.firstname}]];
+	 	$label.lastname  	= [[#{label.lastname}]];
+	 	$label.email		= [[#{label.email}]];
+	 	$label.number 		= [[#{label.number}]];
+	 	$label.comments	    = [[#{label.comments}]];
+	 	$label.queuename    = [[#{label.queuename}]]; 
+	 	$label.date			= [[#{label.date}]]; 
+	 	$label.enter		= [[#{label.enter}]]; 
+	 	$label.exit			= [[#{label.exit}]]; 
+	 	$label.count		= [[#{label.count}]]; 
+	 	$label.time			= [[#{label.time}]];
+	 	$label.src			= [[#{label.src}]];
+	 	$label.dst 			= [[#{label.dst}]];
+	 	$label.duration		= [[#{label.duration}]];
+	 	$label.disposition  = [[#{label.disposition}]];
+	 	$label.time			= [[#{label.time}]];
+	 	
+	 	
+	 	$error.enterFirstName 	= [[#{error.enterFirstName}]];
+	 	$error.enterLastName 	= [[#{error.enterLastName}]];
+	 	$error.enterPassword	= [[#{error.enterPassword}]];
+	 	$error.enterEmail		= [[#{error.enterEmail}]];
+	 	$error.enterAgentName	= [[#{error.enterAgentName}]];
+	 	$error.enterPhoneNumber = [[#{error.enterPhoneNumber}]];
+	 	$error.enterComments    = [[#{error.enterComments}]];
+	 	
+	 	$error.saveAgent		= [[#{error.saveAgent}]];
+	 	$error.savePhone		= [[#{error.savePhone}]];
+	 	$error.saveUser			= [[#{error.saveUser}]];
+	 	$error.saveQueue		= [[#{error.saveQueue}]];
+	 	
+	 	$message.deleteAgentWithId = [[#{message.deleteAgentWithId}]];
+	 	$message.addAgentWithId    = [[#{message.addAgentWithId}]];
+	 	$message.toQueue		   = [[#{message.toQueue}]];
+	 	$message.deletePhoneWithId = [[#{message.deletePhoneWithId}]];
+	 	$message.enterQueueName    = [[#{message.enterQueueName}]];
+	 	$message.removeAgent	   = [[#{message.removeAgent}]];
+	 	$message.waitBridging 	   = [[#{message.waitBridging}]];
+	 
+	//]]>	
+	 </script>
+           
+</headers>
+</html>

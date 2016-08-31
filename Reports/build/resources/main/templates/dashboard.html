@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head  th:include="headers :: links"></head>      
+
+<body onload="appgui.relogin()">
+
+<div id="wait_dialog" class="alert alert-success wait-dialog hidden" role="alert">
+    	<img class="image-rotate" src="src/img/rotate.gif" width="50" height="50"  />
+     	<span th:text="#{message.pleaseWait}">Please wait</span>
+</div>	
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+   <div class="container-fluid"> 	
+      <div class="navbar-header">
+          <span class="navbar-brand">Asterionix</span>
+       </div>
+        <div id="navbar" class="collapse navbar-collapse">
+        	<div  class="navbar-btn" >
+             	<button id="btnStart" type="button" class="btn btn-success" onclick="appgui.start()" th:text="#{button.start}">Start</button>
+             	 <button id="btnStop" type="button" class="btn btn-danger disabled" onclick="appgui.stop()" th:text="#{button.stop}">Stop</button>
+             	 <div class="pull-right">
+	         	  <span id="connectedSate" th:text="${currentUser}" > username </span> 
+	         	 
+	         	  <button id="btnLogout" type="button" class="btn btn-danger" onclick="appgui.logout()" th:text="#{button.logout}"> Logout</button>
+	         	   
+	         	 </div> 
+         	  </div>
+         
+        </div><!--/.nav-collapse -->
+	</div>
+ </nav>
+ 
+<div id="errorConnection" class="alert alert-danger alert-super-danger hidden" role="alert">
+     <i class="fa  fa-exclamation-triangle" aria-hidden="true"></i>
+     <span><strong>Error!&nbsp;</strong><span th:text="#{error.connection}">Connection to Asterisk fail</span></span>
+</div>
+<div  id="errorConfig" class="alert alert-danger alert-super-danger" th:classappend="${configError}? 'hidden'"  role="alert">
+     <i class="fa  fa-exclamation-triangle" aria-hidden="true"></i>
+     <span><strong>Error!&nbsp;</strong><span th:text="#{error.config}">Config reading fail</span></span>
+</div>
+<div  id="demoInfo" class="alert alert-danger alert-super-danger hidden"  role="alert">
+     <i class="fa  fa-exclamation-triangle" aria-hidden="true"></i>
+     <span><strong>Demo version. Some functions are restricted.</strong></span>
+</div>
+<br/>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6 col-lg-6 dashboard-panel">
+           <div class="panel panel-primary">
+             <div class="panel-heading" >
+		            <h4 class="panel-title"><i class="fa fa-tachometer fa-fw"></i><span th:text="#{app.panel.dashboard}">Dashboard</span></h4>
+		     </div>
+		     <div class="panel-body dashboard-panel">
+		       <div class="col-md-5 col-lg-5 dashboard-panel">
+		      		
+		         <div class="panel panel-primary">
+		          <div class="panel-heading" >
+		            <h4 class="panel-title"><i class="fa fa-dot-circle-o fa-fw"></i><span th:text="#{app.panel.queues.title}">Queus</span></h4>
+		          </div>
+		          <div id="queues_container" class="panel-body"></div> 
+				</div> 	
+			 </div>
+			  <div class="col-md-7 col-lg-7 dashboard-panel">
+				  <div class="panel  panel-primary">
+		       		<div class="panel-heading" >
+						<h4 class="panel-title"><i class="fa fa-phone-square fa-fw"></i><span th:text="#{app.panel.incalls.title}">Panel</span></h4>
+				 	</div>
+				   	<div id="incoming_calls_container" class="panel-body dashboard-panel">
+				  	
+				  </div>
+				</div> 
+			  </div>
+			</div>
+		</div>	  
+  	  </div>
+  	<div class="col-md-6 col-lg-6  dashboard-panel">  
+  	  <div class="panel panel-primary">
+             <div class="panel-heading" >
+		            <h4 class="panel-title"><i class="fa fa-bar-chart fa-fw"></i><span th:text="#{app.panel.statistic}">Queus</span></h4>
+		     </div>
+	  <div class="panel-body">
+	  <div  class="col-md-12 col-lg-12 dashboard-panel">
+		<div class="tabbable boxed parentTabs">
+		    <ul class="nav nav-tabs">
+		        <li class="active"><a href="#set1"><i class="fa fa-file-text fa-fw" ></i><span th:text="#{label.reports}">Reports</span></a></li>
+<!-- 		        <li><a href="#set0"><i class="fa fa-area-chart fa-fw" ></i><span th:text="#{label.charts}">Charts</span></a></li>  -->
+		        <li><a href="#set2"><i class="fa fa-cogs fa-fw" ></i><span th:text="#{label.settings}">Settings</span></a></li>
+		    </ul>
+		    <div class="tab-content">
+		      <div class="tab-pane fade" id="set0">
+		            <div class="tabbable">
+		                <ul class="nav nav-tabs">
+		                     <li class="active"><a href="#sub01"><span>Chart01</span></a></li>
+		                     <li><a href="#sub02">Chart02</a></li>
+		                </ul>
+		                <div class="tab-content">
+		                    <div class="tab-pane fade active in" id="sub01">
+		                         <p>Charts01 content</p>
+		                    </div>
+		                    <div class="tab-pane fade" id="sub02">
+		                         <p>Charts02 content</p>
+		                    </div>
+		                   
+		                </div>
+		            </div>
+		        </div>
+		        <div class="tab-pane fade active in" id="set1">
+		            <div class="tabbable">
+		                <ul class="nav nav-tabs">
+		                     <li class="active"><a href="#sub11"><i class="fa  fa-database fa-fw" ></i><span th:text="#{label.cdr}">CDR</span></a></li>
+		                     <li><a href="#sub12"><i class="fa fa-bullseye fa-fw" ></i><span th:text="#{label.queue}">Queue</span></a></li>
+		                     <li><a href="#sub13"><i class="fa  fa-search fa-fw" ></i><span th:text="#{label.search}">Search</span></a></li>
+		                </ul>
+		                <div class="tab-content">
+		                    <div class="tab-pane fade active in" id="sub11">
+		                        <div  th:include="cdrs :: cdr" ></div> 
+		                    </div>
+		                    <div class="tab-pane fade" id="sub12">
+		                        <div  th:include="queues :: queue" ></div>
+		                    </div>
+		                    <div class="tab-pane fade" id="sub13">
+		                        <div th:include="searches :: search" ></div>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		        <div class="tab-pane fade" id="set2">
+		            <div class="tabbable">
+		                <ul class="nav nav-tabs">
+		                    <li class="active"><a href="#sub21"><i class="fa fa-users fa-fw" ></i><span th:text="#{label.agents}">Agents</span></a></li>
+		                    <li><a href="#sub23"><i class="fa fa-phone-square fa-fw" ></i><span th:text="#{label.phones}">Phones</span></a></li>
+		                    <li><a href="#sub24"><i class="fa fa-bullseye fa-fw" ></i><span th:text="#{label.queues}">Queues</span></a></li>
+		                    <li><a href="#sub22"><i class="fa fa-user fa-fw" ></i><span th:text="#{label.users}">Users</span></a></li>
+		                </ul>
+		                <div class="tab-content">
+		                    <div class="tab-pane fade active in" id="sub21">
+		                       <div  th:include="agents :: agent"></div> 
+		                    </div>
+		                   
+		                     <div class="tab-pane fade" id="sub23">
+		                        <div th:include="phones :: phone" ></div>
+		                    </div>
+		                     <div class="tab-pane fade" id="sub24">
+		                        <div th:include="courses :: course" ></div>
+		                    </div>
+		                     <div class="tab-pane fade" id="sub22">
+		                        <div th:include="users :: user" ></div>
+		                    </div>
+		                  
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</div>	  
+
+	  </div>
+	 </div>
+	</div> 
+   </div>
+  </div>
+</div>  
+
+
+<noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being enabled. Please enable
+    Javascript and reload this page!</h2></noscript>
+<script th:inline="javascript"> 
+// <![CDATA[
+ 
+// ]]>	
+</script>             
+	             
+
+	             
+</body>
+</html>

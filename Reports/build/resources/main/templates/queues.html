@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head  th:include="headers :: links"></head>
+<body>
+<queue-page th:fragment="queue">
+ <br/>
+<div class="col-md-12 dashboard-panel">
+	<div  class="panel panel-default ">
+		<div class="panel-heading"><h4 class="panel-title"><i class="fa fa-bullseye fa-fw"></i><span th:text="#{label.queue}">Queue</span></h4></div>
+			<div class="panel-body dashboard-panel">
+				<div class="panel  panel-warning ">
+					
+					<div class="panel-body dashboard-panel">
+					  <form class="form-inline">
+						<div class="input-group col-md-12">
+							<span  class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+							<input id="picker1" type="text" class="form-control" name="date1" />
+							<span  class="input-group-addon "><i class="fa fa-calendar" aria-hidden="true"></i></span>
+							<input id="picker2" type="text" class="form-control " name="date2" />
+							 <span  class="input-group-addon "><i class="fa fa-user" aria-hidden="true"></i></span>
+							 <span class="input-group-btn">
+								 <select id="selectAgent" class="form-control"  ></select>
+							 </span>
+							  <span  class="input-group-addon "><i class="fa fa-dot-circle-o" aria-hidden="true"></i></span>
+							  <span class="input-group-btn">
+								 <select id="selectCourse" class="form-control"  >
+								 
+								 </select>
+							 </span>
+							  <span  class="input-group-addon "><i class="fa fa-list-ol" aria-hidden="true"></i></span>
+							  <span class="input-group-btn">
+								 <select id="pageSize" class="form-control"  >
+								   <option>100</option>
+								   <option>50</option>
+								   <option>20</option>
+								 </select>
+							 </span>
+							 <span class="input-group-btn">
+							 	<button id="btnLogins" type="button" class="btn btn-primary" onclick="queuelogin.loginReport(1)" th:text="#{button.apply}">Apply</button>
+							 </span>
+						</div>
+					</form>
+				</div>
+			</div>	
+			<br/>
+			<div id="QGRPanel" class="col-md-12 dashboard-panel hidden">	
+		   		<div class="panel  panel-default">
+					<div class="panel-heading" >
+					  <div class="row">
+					   <div class="col-md-11">
+						 <h4 class="panel-title"><i class="fa fa-table fa-fw"></i><span th:text="#{label.QGR}">Table</span></h4>
+						</div>
+						 <div class="col-md-1">
+						 	<i id="closeQGR" class="fa fa-times-circle fa-lg pull-right" onclick="queuelogin.hideQGRPanel()"></i>
+						 </div>
+					</div>
+					</div>
+				<div class="panel-body">
+ 				 <div class="col-md-12">
+					<table id="tableQueueLogin" class="table table-striped table-bordered table-hover" ></table>
+				</div>
+				<div class="col-md-12">
+				  <div id="tableCDR_paginate" class="dataTables_paginate paging_simple_numbers">
+					 <ul id="pageTab" class="pagination"></ul>
+				  </div>
+				</div>
+			  </div>
+		     </div>	
+	      </div>	
+	      <div id="QDRPanel" class="col-md-12 hidden">	
+		   		<div class="panel  panel-default">
+					<div class="panel-heading" >
+					  <div class="row">
+					   <div class="col-md-11">
+						  <h4 class="panel-title"><i class="fa fa-table fa-fw"></i><span th:text="#{label.QDR}">Queue Detailed Report</span></h4>
+						</div>
+						 <div class="col-md-1">
+						 	<i id="closeQDR" class="fa fa-times-circle fa-lg pull-right" onclick="queuelogin.hideQDRPanel()"></i>
+						 </div>
+					</div>
+				</div>	
+				<div class="panel-body">
+ 				 <div class="col-md-12">
+ 				 <div class="col-md-12">
+				  <div id="tableQDR_paginate" class="dataTables_paginate paging_simple_numbers">
+					 <ul id="pageTab1" class="pagination"></ul>
+				  </div>
+				   </div>
+					<table id="tableQDR" class="table table-striped table-bordered table-hover" ></table>
+				</div>
+				
+			  </div>
+		     </div>	
+	      </div>	
+	      
+	      
+     </div>
+</div> 
+</div> 
+<div id="qdr_player" class="jp-jplayer"></div>				
+</queue-page>
+</body>
+</html>

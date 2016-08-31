@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head  th:include="headers :: links"></head>      
+
+<body onload="appgui.relogin()">
+
+<div id="wait_dialog" class="alert alert-success wait-dialog hidden" role="alert">
+    	<img class="image-rotate" src="src/img/rotate.gif" width="50" height="50"  />
+     	<span th:text="#{message.pleaseWait}">Please wait</span>
+</div>	
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+   <div class="container-fluid"> 	
+      <div class="navbar-header">
+          <span class="navbar-brand">Asterionix | Dashboard</span>
+       </div>
+        <div id="navbar" class="collapse navbar-collapse">
+        	<div  class="navbar-btn" >
+             	<button id="btnStart" type="button" class="btn btn-success" onclick="appgui.start()" th:text="#{button.start}">Start</button>
+             	 <button id="btnStop" type="button" class="btn btn-danger disabled" onclick="appgui.stop()" th:text="#{button.stop}">Stop</button>
+             	 <div class="pull-right">
+	         	  <span id="connectedSate" th:text="${currentUser}" > username </span> 
+	         	 
+	         	  <button id="btnLogout" type="button" class="btn btn-danger" onclick="appgui.logout()" th:text="#{button.logout}"> Logout</button>
+	         	   
+	         	 </div> 
+         	  </div>
+         
+        </div><!--/.nav-collapse -->
+	</div>
+ </nav>
+ 
+
+<div id="license_demo" class="alert alert-danger alert-super-danger" th:classappend="${license_demo}? 'hidden'" role="alert">
+     <i class="fa  fa-exclamation-triangle" aria-hidden="true"></i>
+     <span><strong>Demo version has limited facilities. No more than 2 agents allowed.</strong></span>
+</div>
+ 
+<div id="errorConnection" class="alert alert-danger alert-super-danger hidden" role="alert">
+     <i class="fa  fa-exclamation-triangle" aria-hidden="true"></i>
+     <span><strong>Error!&nbsp;</strong><span th:text="#{error.connection}">Connection to Asterisk fail</span></span>
+</div>
+<div  id="errorConfig" class="alert alert-danger alert-super-danger" th:classappend="${configError}? 'hidden'"  role="alert">
+     <i class="fa  fa-exclamation-triangle" aria-hidden="true"></i>
+     <span><strong>Error!&nbsp;</strong><span th:text="#{error.config}">Config reading fail</span></span>
+</div>
+<div  id="demoInfo" class="alert alert-danger alert-super-danger hidden"  role="alert">
+     <i class="fa  fa-exclamation-triangle" aria-hidden="true"></i>
+     <span><strong>Demo version. Some functions are restricted.</strong></span>
+</div>
+<br/>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 col-lg-3" style="padding-left: 4px">
+           <div class="panel panel-primary">
+             <div class="panel-heading" >
+		            <h4 class="panel-title"><i class="fa fa-coffee fa-fw"></i><span th:text="#{app.panel.agentsinqueue}">Agents in queues</span></h4>
+		     </div>
+		     <div class="panel-body" style="padding-left: 4px; padding-right: 4px;">
+		       <div class="col-md-12 col-lg-12 ">
+		      		 <div id="queues_container"></div> 
+<!--  
+		         <div class="panel panel-primary">
+		          <div class="panel-heading" >
+		            <h4 class="panel-title"><i class="fa fa-dot-circle-o fa-fw"></i><span th:text="#{app.panel.queues.title}">Queus</span></h4>
+		          </div>
+		          <div id="queues_container" class="panel-body"></div> 
+				</div> 	
+-->				
+			 </div>
+			
+			</div>
+		</div>	  
+  	  </div>
+  <div class="col-md-7 col-lg-7" style="padding-left: 4px">
+           <div class="panel panel-primary">
+             <div class="panel-heading" >
+		            <h4 class="panel-title"><i class="fa fa-tachometer fa-fw"></i><span th:text="#{label.current_calls}">Current Calls</span></h4>
+		     </div>
+		     <div class="panel-body" style="padding-left: 4px; padding-right: 4px;">
+		       <div class="col-md-6 col-lg-6 ">
+					  <div class="panel  panel-primary">
+				     	<div class="panel-heading" >
+							<h4 class="panel-title"><i class="fa fa-phone-square fa-fw"></i><span th:text="#{app.panel.bridgedcalls}">Panel</span></h4>
+					 	</div>
+					   	<div id="bridged_calls_container" class="panel-body panel-body-small">
+						  	<table id="bridgedTable" class="table table-striped table-bordered table-hover" >
+						  		
+						  	</table>
+					  </div>
+					 </div> 
+				   </div>				
+			      <div class="col-md-6 col-lg-6">
+					  <div class="panel  panel-primary">
+			       		<div class="panel-heading" >
+							<h4 class="panel-title"><i class="fa fa-phone-square fa-fw"></i><span th:text="#{app.panel.inboundcalls}">Panel</span></h4>
+					 	</div>
+					 	<br/>
+					 		<div class="row">
+							   <div class ="col-md-3"> 
+							  	 <span class="form-control form-label1" th:text="#{label.callfrom} + ':'">Source:</span>
+							   </div>
+							   <div class ="input-group col-md-4">  
+							   		<span class="input-group-addon" ><i class="fa fa-phone fa-fw"></i></span>
+							  		 <select id="selectCallBackPhone" class="form-control" ></select>
+							  </div>
+							</div>
+					 	
+					   	<div id="incoming_calls_container" class="panel-body ">
+					  	
+					  </div>
+					</div> 
+				  </div>
+		  		  
+			
+			</div>
+		</div>	  
+  	  </div>  	  
+	  <div class="col-md-2 col-lg-2" style="padding-left: 5px">
+	  	 <div class="panel panel-primary">
+             <div class="panel-heading" >
+		            <h4 class="panel-title"><i class="fa fa-envelope fa-fw"></i><span th:text="#{label.summary }">Summary</span></h4>
+		     </div>
+		     <div class="panel-body" >
+		    <div  class="panel panel-default panel-total-calls">
+				<div class ="panel-body">
+				  <div class="row vertical-align">
+				  <div class="col-md-6 rbode">
+				    <h1 class="hh1">&#8721;</h1>
+				  </div>
+				   <div class="col-md-6">
+				   		<div class="col-md-12 text-center">
+							<span class="box-title">Total Calls</span>
+					 		<div class="row">  
+								<h1 id="total-calls">0</h1>
+							</div>	
+					 	</div>
+				  </div>
+		  		</div>	 	
+		      </div>
+		    </div>	
+		
+ 		   <div class="panel panel-default panel-answered-calls">
+				<div class ="panel-body">
+				  <div class="row vertical-align">
+				  <div class="col-md-6 rbode">
+				    <i  class="fa fa-headphones fa-3x"></i>
+				  </div>
+				   <div class="col-md-6">
+				   		<div class="col-md-12 text-center">
+							<span class="box-title">Answered</span>
+					 		<div class="row">  
+								<h1 id="answered-calls">0</h1>
+							</div>	
+					 	</div>
+				  </div>
+		  		</div>	 	
+		      </div>
+		    </div>	
+		<div class="panel panel-default panel-unanswered-calls">
+				<div class ="panel-body">
+				  <div class="row vertical-align">
+				  <div class="col-md-6 rbode">
+				    <i  class="fa fa-exclamation fa-3x"></i>
+				  </div>
+				   <div class="col-md-6">
+				   		<div class="col-md-12 text-center">
+							<span class="box-title">Unanswered</span>
+					 		<div class="row">  
+								<h1 id="unanswered-calls">0</h1>
+							</div>	
+					 	</div>
+				  </div>
+		  		</div>	 	
+		      </div>
+		    </div>		    
+		  <div class="panel panel-default panel-callback-calls">
+				<div class ="panel-body">
+				  <div class="row vertical-align">
+				  <div class="col-md-6 rbode">
+				    <i  class="fa fa-reply fa-3x"></i>
+				  </div>
+				   <div class="col-md-6">
+				   		<div class="col-md-12 text-center">
+							<span class="box-title">Callback</span>
+					 		<div class="row">  
+								<h1 id="callback-calls">0</h1>
+							</div>	
+					 	</div>
+				  </div>
+		  		</div>	 	
+		      </div>
+		    </div>				    
+	     </div>
+	  </div>   
+    </div>	
+  </div>
+</div>  
+
+
+<noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being enabled. Please enable
+    Javascript and reload this page!</h2></noscript>
+<script th:inline="javascript"> 
+// <![CDATA[
+ 
+// ]]>	
+</script>             
+	             
+
+	             
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+					<div id="newAgentForm" class="col-md-9">
+
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title" >
+									<i class="fa fa-plus-square fa-fw"></i><span id="queueInfo" data-th-text="#{agent.list.panel.newagent}">Report</span>
+								</h3>
+							</div>
+							<div class="panel-body">
+								<form class="form-horizontal" action="#"
+									data-th-action="@{/agent/save}" data-th-object="${agentDTO}"
+									accept-charset="UTF-8" method="post">
+									<div class="form-group">
+										<label class="col-sm-3 control-label"
+											data-th-text="#{agent.add.page.name}">AgentName</label>
+										<div class="col-md-6">
+											<div class="input-group">
+												<span class="input-group-addon no-border-right"><i
+													class="glyphicon glyphicon-user"></i></span> <input
+													id="AgentNameInput" type="text"
+													class="form-control no-border-left"
+													th:placeholder="#{agent.add.page.name.placeholder}" />
+											</div>
+										</div>
+									</div>
+									<div id="AgentNameEmptyWarning" class="form-group hidden">
+										<div class="col-md-12">
+
+											<div class="alert alert-danger" role="alert">
+												<p class="text-center" th:text="#{agent.add.emptyname}">Empty
+													Agent Name field</p>
+											</div>
+
+										</div>
+									</div>
+									<div id="DuplicateAgentNameError"
+										class="form-group  col-md-12 hidden">
+										<div class="col-md-12">
+											<div class="alert alert-danger" role="alert">
+												<p id="msg_duplicateagentname" class="text-center">Duplicate
+													Agent Name</p>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label"
+											data-th-text="#{agent.add.page.extension}">Extension</label>
+										<div class="col-md-4">
+											<div class="input-group">
+												<span class="input-group-addon no-border-right"><i
+													class="glyphicon glyphicon-asterisk"></i></span> <input
+													id="AgentExtensionInput" type="text"
+													class="form-control no-border-left"
+													th:placeholder="#{agent.add.page.extension.placeholder}" />
+											</div>
+										</div>
+									</div>
+									<div id="ExtensionEmptyWarning" class="form-group hidden">
+										<div class="col-md-12">
+
+											<div class="alert alert-danger" role="alert">
+												<p class="text-center" th:text="#{agent.add.emptyexten}">Center
+													aligned text.</p>
+											</div>
+										</div>
+									</div>
+									<div id="DuplicateExtensionError"
+										class="form-group  col-md-12 hidden">
+										<div class="col-md-12">
+											<div class="alert alert-danger" role="alert">
+												<p id="msg_duplicateextension" class="text-center">Center
+													aligned text.</p>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label"
+											data-th-text="#{agent.add.page.passwd}">Password</label>
+										<div class="col-md-4">
+											<div class="input-group">
+												<span class="input-group-addon no-border-right"><i
+													class="glyphicon glyphicon-certificate"></i></span> <input
+													id="agentPasswd" type="text"
+													class="form-control no-border-left"
+													th:placeholder="#{agent.add.page.passwd.placeholder}" />
+											</div>
+										</div>
+									</div>
+									<div id="agPasswdWarning" class="form-group hidden">
+										<div class="col-md-12">
+
+											<div class="alert alert-danger" role="alert">
+												<p class="text-center" th:text="#{agent.add.emptypasswd}">Center
+													aligned text.</p>
+											</div>
+
+										</div>
+									</div>
+									<!-- Queue Name -->
+									<div class="form-group">
+										<label class="col-sm-3 control-label"
+											data-th-text="#{agent.add.page.groupe}">Groupe</label>
+										<div class="col-md-4">
+											<div class="input-group">
+												<span class="input-group-addon no-border-right"><i
+													class="glyphicon glyphicon-phone-alt"></i></span> <select
+													id="queuename" class="form-control no-border-left">
+													<option th:each="qu : ${queues}" th:text="${qu.queuename}"
+														th:value="${qu.id}">Queuename</option>
+
+												</select>
+											</div>
+										</div>
+									</div>
+									<!-- Queue Name End-->
+									<div class="form-group">
+									
+										<div class="col-md-3">
+											<div class="input-group">
+												<button id="canselBtn" class="btn btn-primary" type="button" >
+													<span class="glyphicon glyphicon-remove" aria-hidden="true">
+													<span th:text="#{button.label.cancel}" style="margin-left: 2px">
+														Add Phone</span>
+													</span>
+												</button>
+
+											</div>
+										</div>
+										<div class="col-md-3">
+											<div class="input-group">
+												<button id="saveBtn" class="btn btn-primary " type="button">
+													<span class="glyphicon glyphicon-plus-sign" aria-hidden="true">
+													<span th:text="#{button.label.save}" style="margin-left: 2px">
+														Add Phone</span>
+													</span>
+												</button>
+											</div>
+										</div>
+								
+								  </div>	
+								</form>
+							</div>
+						</div>
+					</div>
+					
+
+</body>
+</html>

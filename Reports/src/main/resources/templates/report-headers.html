@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<headers th:fragment="links"> 
+    <title data-th-text="#{app.title}">Dashboard</title>
+    <link rel="shortcut icon" href="../dist/img/favicon.png" type="image/x-icon" data-th-href="@{/dist/img/favicon.png}"/>
+
+    <link type="text/css" rel="stylesheet" href="/dist/css/font-awesome/css/font-awesome.css" data-th-href="@{/dist/css/font-awesome/css/font-awesome.css}" />
+ 	<link type="text/css" rel="stylesheet" href="/dist/css/cdr-styles.css" data-th-href="@{/dist/css/cdr-styles.css}" />
+ 	
+    <script type="text/javascript" src="/dist/js/reportViewer.min.js" data-th-src="@{/dist/js/reportViewer.min.js}"></script> 
+ 	<script th:inline="javascript" >
+	//<![CDATA[
+	     
+	 var $label 	= {},
+	 	 $button	={},
+	 	 $error 	= {},
+	 	 $message 	= {};
+	 
+	 	$label.data			= [[#{label.data}]];
+	 	$label.name			= [[#{label.name}]];
+	 	$label.action		= [[#{label.action}]];
+	 	$label.id		 	= [[#{label.id}]];
+	 	$label.firstname 	= [[#{label.firstname}]];
+	 	$label.lastname  	= [[#{label.lastname}]];
+	 	$label.email		= [[#{label.email}]];
+	 	$label.number 		= [[#{label.number}]];
+	 	$label.comments	    = [[#{label.comments}]];
+	 	$label.queuename    = [[#{label.queuename}]]; 
+	 	$label.date			= [[#{label.date}]]; 
+	 	$label.enter		= [[#{label.enter}]]; 
+	 	$label.exit			= [[#{label.exit}]]; 
+	 	$label.count		= [[#{label.count}]]; 
+	 	$label.time			= [[#{label.time}]];
+	 	$label.src			= [[#{label.src}]];
+	 	$label.dst 			= [[#{label.dst}]];
+	 	$label.duration		= [[#{label.duration}]];
+	 	$label.disposition  = [[#{label.disposition}]];
+	 	$label.time			= [[#{label.time}]];
+	 	$label.weight 		= [[#{label.weight}]];
+	 	
+	 	
+	 	$error.enterFirstName 	= [[#{error.enterFirstName}]];
+	 	$error.enterLastName 	= [[#{error.enterLastName}]];
+	 	$error.enterPassword	= [[#{error.enterPassword}]];
+	 	$error.enterEmail		= [[#{error.enterEmail}]];
+	 	$error.enterAgentName	= [[#{error.enterAgentName}]];
+	 	$error.enterPhoneNumber = [[#{error.enterPhoneNumber}]];
+	 	$error.enterComments    = [[#{error.enterComments}]];
+	 	
+	 	$error.saveAgent		= [[#{error.saveAgent}]];
+	 	$error.savePhone		= [[#{error.savePhone}]];
+	 	$error.saveUser			= [[#{error.saveUser}]];
+	 	$error.saveQueue		= [[#{error.saveQueue}]];
+	 	$error.saveCustomer		= [[#{error.saveCustomer}]]
+	 	
+	 	$message.deleteAgentWithId = [[#{message.deleteAgentWithId}]];
+	 	$message.deleteAgent	   = [[#{message.deleteAgent}]];
+	 	$message.addAgentWithId    = [[#{message.addAgentWithId}]];
+	 	$message.toQueue		   = [[#{message.toQueue}]];
+	 	$message.deletePhoneWithId = [[#{message.deletePhoneWithId}]];
+	 	$message.enterQueueName    = [[#{message.enterQueueName}]];
+	 	$message.removeAgent	   = [[#{message.removeAgent}]];
+	 	$message.waitBridging 	   = [[#{message.waitBridging}]];
+	 	$message.deleteCustomer    = [[#{message.deleteCustomer}]]
+	 	$message.customerSaved	   = [[#{message.customerSaved}]]	
+	 	
+	 
+	//]]>	
+	 </script>
+           
+</headers>
+</html>

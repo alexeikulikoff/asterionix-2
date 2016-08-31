@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head  th:include="headers :: links"></head>
+<body>
+<search-page th:fragment="search">
+ <br/>
+<div class="col-md-12 dashboard-panel ">
+	<div  class="panel panel-default ">
+		<div class="panel-heading"><h4 class="panel-title"><i class="fa fa-bullseye fa-fw"></i><span th:text="#{label.search}" >Search</span></h4></div>
+			<div class="panel-body dashboard-panel">
+				<div class="panel  panel-warning">
+					
+					<div class="panel-body">
+					  <form class="form-inline">
+						<div class="input-group col-md-12">
+							<span  class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+							<input id="searchPicker1" type="text" class="form-control" name="date1" />
+							<span  class="input-group-addon "><i class="fa fa-calendar" aria-hidden="true"></i></span>
+							<input id="searchPicker2" type="text" class="form-control " name="date2" />
+							 <span  class="input-group-addon "><i class="fa fa-list-ol" aria-hidden="true"></i></span>
+							  <span class="input-group-btn">
+								 <select id="questpagesize" class="form-control"  >
+								   <option value="100">100</option>
+								   <option value="50">50</option>
+								   <option value="20">20</option>
+								 </select>
+							 </span>
+							<span  class="input-group-addon "><i class="fa fa-phone-square" aria-hidden="true"></i></span>
+							<input id="searchText" type="text" class="form-control" name="tofind" />
+							 <span class="input-group-btn">
+							 	<button id="btnSearch" type="button" class="btn btn-primary" onclick="quest.startfind(1)" th:text="#{button.apply}">Apply</button>
+							 </span>
+						</div>
+					</form>
+				</div>
+			</div>	
+			<br/>
+			
+	      <div id="searchPanel" class="col-md-12 hidden">	
+		   		<div class="panel panel-default">
+					<div class="panel-heading" >
+					  <div class="row">
+					    <div class="col-md-11">
+						  <h4 class="panel-title"><i class="fa fa-table fa-fw"></i><span th:text="#{lable.searchResult}">Search Results:</span></h4>
+						</div>
+						<div class="col-md-1">
+						 	<i id="closeSearch" class="fa fa-times-circle fa-lg pull-right" onclick="quest.hideSearchPanel()"></i>
+						</div>  
+					  </div>
+					</div>
+				<div class="panel-body">
+					<div class="col-md-12">
+					  <div id="tableSearch_paginate" class="dataTables_paginate paging_simple_numbers">
+						 <ul id="tableCDRFindTab" class="pagination"></ul>
+					  </div>
+					</div>
+ 				 <div id="tableFindDiv" class="col-md-12">
+					
+				</div>
+				<div class="col-md-12">
+				  <div id="tableSearch_paginate" class="dataTables_paginate paging_simple_numbers">
+					 <ul id="tableCDRFindTab" class="pagination"></ul>
+				  </div>
+				</div>
+			  </div>
+		     </div>	
+	      </div>	
+     </div>
+   </div> 
+</div> 
+
+</search-page>
+</body>
+</html>

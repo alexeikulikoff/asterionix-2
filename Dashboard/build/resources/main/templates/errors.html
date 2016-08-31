@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+<error-page th:fragment="error">
+<div id="errorDiv" class="col-md-8 hidden" role="alert">
+  <div class="input-group col-md-12">
+	 <div class="alert  alert-danger alert-dismissible text-center" role="alert">
+	   <i class="fa  fa-exclamation-triangle" aria-hidden="true"></i>
+	   <span><strong th:text="#{label.error}">Error!&nbsp;</strong><span id="errorText"></span></span>
+	</div>
+  </div>
+  <div class="input-group col-md-6 col-md-offset-4">
+	 <button type="button" class="btn btn-primary"  onclick="core.closeError()" th:text="#{button.cancel}">Cancel</button>
+  </div>
+ <br/>
+</div>			
+</error-page>
+</body>
+</html>

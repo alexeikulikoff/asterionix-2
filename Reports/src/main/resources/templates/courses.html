@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head  th:include="headers :: links"></head>
+<body>
+<courses-page th:fragment="course">
+<br/>
+<div class="col-md-12">
+		<div class="btn-group" role="group" aria-label="...">
+			<button class="btn btn-primary" type="button" onclick="course.addQueueName()" th:text="#{button.add}">Add</button>
+		</div>	
+</div>
+<div class="col-md-12">
+	<br/> 
+</div>	
+<div class="col-md-12">
+	<div id="addQueuePanel" class="panel panel-default hidden ">
+	  <div class="panel-heading"><h4 class="panel-title"><i class="fa fa-bullseye fa-fw"></i><span data-th-text="#{label.newQueue}">New Queue</span></h4></div>
+	  <div class="panel-body "><br/>
+			<form id="formQueueName" >
+			  <div class="row">
+			    <div class ="col-md-2"> 
+			        <span class="form-control form-label1" th:text="#{label.queuename}+':'">Queue name</span>
+			    </div>
+			    <div class ="input-group col-md-4">     
+					<span class="input-group-addon" ><i class="fa fa-user fa-fw"></i></span>
+					 <input id="coursename" type="text" class="form-control" th:placeholder="#{placeholder.queuename}" aria-describedby="basic-addon1" required="required" name="coursename" />
+				</div>	
+			  </div>
+			  <br/>	
+			  <div class="row">
+			    <div class ="col-md-2"> 
+			      <span class="form-control form-label1" th:text="#{label.weight}+':'">Weight</span>
+			    </div>
+			    <div class ="input-group col-md-2">
+			       <span class="input-group-addon" ><i class="fa fa-user fa-fw"></i></span>
+				   <input id="weight" type="text" class="form-control" th:placeholder="#{placeholder.weight}" aria-describedby="basic-addon1"  name="weight" />
+			    </div>       
+			  </div>
+			  <br/>		
+  			  <div class="input-group col-md-6 col-md-offset-2">
+		  		<button type="button" class="btn btn-primary"   onclick="course.save()" th:text="#{button.save}">Save</button>
+		  		<button type="button" class="btn btn-primary"   onclick="course.close()" th:text="#{button.close}">Close</button>
+			   </div>
+				<div class="col-md-12"><br/> </div>
+			</form>
+			<br/>
+			<div id="queue_save_message" class="alert col-md-6 hidden" role="alert"></div>
+		
+		</div>
+	</div>
+</div>	
+<div id="errorCoursesDiv" class="col-md-8 hidden" role="alert">
+  <div class="input-group col-md-12">
+	 <div class="alert  alert-danger alert-dismissible text-center" role="alert">
+	   <i class="fa  fa-exclamation-triangle" aria-hidden="true"></i>
+	   <span><strong>Error!&nbsp;</strong><span id="errorCoursesText"></span></span>
+	</div>
+  </div>
+  <div class="input-group col-md-6 col-md-offset-4">
+	 <button type="button" class="btn btn-primary"  onclick="course.coursesCourseError()" th:text="#{button.cancel}">Cancel</button>
+  </div>
+ <br/>
+</div>		
+<div class="col-md-6">
+	<div  class="panel panel-default ">
+		<div class="panel-heading"><h4 class="panel-title"><i class="fa fa-bullseye fa-fw"></i><span th:text="#{label.queues}">Queues</span></h4></div>
+			<div class="panel-body">
+				<table id="tableQueues" class="table table-striped table-bordered table-hover" ></table>
+				<br/>
+			 </div>
+		</div>
+</div> 	
+
+<div id="warningCoursesDel" class=" col-md-8 hidden" role="alert">
+  <div class="input-group col-md-12 ">
+	 <div class="alert alert-warning alert-dismissible text-center" role="alert">
+	   <i class="fa  fa-exclamation-triangle" aria-hidden="true"></i>
+	   <span><strong>Warning!&nbsp;</strong><span id="warningCoursesDelText"></span></span>
+	</div>
+  </div>
+  <div class="input-group col-md-6 col-md-offset-4">
+	 <button id="btnCoursesDel" type="button" class="btn btn-primary" th:text="#{button.delete}">Delete</button>
+	 <button type="button" class="btn btn-primary"  onclick="course.worningCourseCancel()" th:text="#{button.cancel}">Cancel</button>
+  </div>
+ <br/>
+</div>
+</courses-page>
+</body>
+</html>

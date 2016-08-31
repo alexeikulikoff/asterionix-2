@@ -1,0 +1,19 @@
+package com.asterionix.controllers.event;
+
+public enum WsEvents {
+
+	ON_QUEUE_MEMBER_ADDED, 
+	ON_QUEUE_MEMBER_REMOVED,
+	LOGGED_IN, 
+	LOGGED_FF,
+	LOGIN,
+	LOGOFF,
+	STOP,
+	START,
+	DONE,
+	QUEUE_SHOW,
+	QUEUE_SHOW_OK,
+	LOGGED_IN_ERROR,
+	LOGGED_OFF_ERROR,
+	REMOVE_AGENT
+}

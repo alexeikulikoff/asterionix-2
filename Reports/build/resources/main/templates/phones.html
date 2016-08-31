@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head  th:include="headers :: links"></head>
+<body>
+<phone-page th:fragment="phone">
+<br/>
+
+<div class="col-md-12">
+		<div class="btn-group" role="group" aria-label="...">
+			<button class="btn btn-primary" type="button" onclick="phones.addPhone()" th:text="#{button.add}" >Add Phone</button>
+		</div>	
+</div>
+<div class="col-md-12">
+	<br/> 
+</div>	
+<div class="col-md-12">
+<div id="addPhonePanel" class="panel panel-default hidden ">
+	<div class="panel-heading"><h4 class="panel-title"><i class="fa fa-phone-square fa-fw"></i><span th:text="#{label.newPhone}">New Phone</span></h4></div>
+		<div class="panel-body">
+		<form id="phonesForm">
+			<div class="row">
+			   <div class ="col-md-2"> 
+			      <span class="form-control form-label1" th:text="#{label.number}+':'">Agent name</span>
+			   </div>
+			   <div class ="input-group col-md-4"> 
+				  <span class="input-group-addon" ><i class="fa fa-phone fa-fw"></i></span>
+				  <input id="pnumber" type="text" class="form-control" th:placeholder="#{placeholder.phonenumber}" aria-describedby="basic-addon1" required="required" name="pnumber" />
+			  </div>
+			</div>
+			<br/>
+			<div class ="row"> 
+			   <div class ="col-md-2"> 
+			  	  <span class="form-control form-label1" th:text="#{label.comments	}+':'">Agent name</span>
+			  </div>
+			  <div class ="input-group col-md-4"> 
+			  	<span class="input-group-addon" ><i class="fa fa-comment fa-fw"></i></span>
+			  	<input id="comments" type="text" class="form-control" th:placeholder="#{placeholder.comments}" aria-describedby="basic-addon1" required="required" name="comments" />
+			  </div>	
+			</div>
+			<br/>
+			
+			  <div class="input-group col-md-6 col-md-offset-2">
+			  	<button type="button" class="btn btn-primary"   onclick="phones.save()"  th:text="#{button.save}">Save</button>
+			  	<button type="button" class="btn btn-primary "  onclick="phones.close()" th:text="#{button.close}">Close</button>
+			  </div>	
+			
+			<div class="col-md-12"><br/> </div>
+		</form>
+		<br/>
+		<div id="save_phone_message" class="alert col-md-6 hidden" role="alert"></div>
+		
+		</div>
+	</div>
+</div>
+<div id="errorPhonesDiv" class="col-md-8 hidden" role="alert">
+  <div class="input-group col-md-12">
+	 <div class="alert  alert-danger alert-dismissible text-center" role="alert">
+	   <i class="fa  fa-exclamation-triangle" aria-hidden="true"></i>
+	   <span><strong>Error!&nbsp;</strong><span id="errorPhonesText"></span></span>
+	</div>
+  </div>
+  <div class="input-group col-md-6 col-md-offset-4">
+	 <button type="button" class="btn btn-primary"  onclick="phones.closePhonesError()" th:text="#{button.cancel}">Cancel</button>
+  </div>
+ <br/>
+</div>	
+<div class="col-md-8">
+	<div  class="panel panel-default ">
+		<div class="panel-heading"><h4 class="panel-title"><i class="fa fa-phone-square fa-fw"></i><span th:text="#{label.phones}">Phones</span></h4></div>
+			<div class="panel-body">
+				<table id="tablePhones" class="table table-striped table-bordered table-hover" ></table>
+				<br/>
+				
+			</div>
+		</div> 
+	</div>  
+<div id="warningPhoneDiv" class=" col-md-8 hidden" role="alert">
+  <div class="input-group col-md-12 ">
+	 <div class="alert alert-warning alert-dismissible text-center" role="alert">
+	   <i class="fa  fa-exclamation-triangle" aria-hidden="true"></i>
+	   <span><strong>Warning!&nbsp;</strong><span id="warningPhoneText"></span></span>
+	</div>
+  </div>
+  <div class="input-group col-md-6 col-md-offset-4">
+	 <button id="btnPhoneDelete" type="button" class="btn btn-primary" th:text="#{button.delete}">Delete</button>
+	 <button type="button" class="btn btn-primary"  onclick="phones.worningPhoneCancel()" th:text="#{button.cancel}">Cancel</button>
+  </div>
+ <br/>
+</div>					
+</phone-page>	
+</body>
+</html>

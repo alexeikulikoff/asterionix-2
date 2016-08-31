@@ -1,0 +1,4 @@
+GRADLE_BUILD_COMMANDS=org.eclipse.jdt.core.javabuilder,org.eclipse.wst.common.project.facet.core.builder,org.eclipse.wst.validation.validationbuilder
+GRADLE_FILTERS=1.0-projectRelativePath-matches-false-false-build,1.0-projectRelativePath-matches-false-false-.gradle,1.0-projectRelativePath-matches-false-false-Dashboard,1.0-projectRelativePath-matches-false-false-Reports,1.0-projectRelativePath-matches-false-false-Scoreboard,1.0-projectRelativePath-matches-false-false-asterionix-agi
+GRADLE_NATURES=org.eclipse.jdt.core.javanature,org.eclipse.wst.common.project.facet.core.nature,org.eclipse.wst.common.modulecore.ModuleCoreNature,org.eclipse.jem.workbench.JavaEMFNature
+eclipse.preferences.version=1

@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="shortcut icon" href="/SANDPIPER/resources/images/favicon.png" type="image/x-icon" />
+<!-- Core CSS - Include with every page -->
+<link type="text/css" rel="stylesheet" href="/SANDPIPER/resources/css/bootstrap-3.1.1.min.css" />
+
+<link type="text/css" rel="stylesheet" href="/SANDPIPER/resources/font-awesome/css/font-awesome.css" />
+
+<!-- SB Admin CSS - Include with every page -->
+<link type="text/css" rel="stylesheet" href="/SANDPIPER/resources/css/sb-admin.css" />
+<link type="text/css" rel="stylesheet" href="/SANDPIPER/resources/css/jquery.datetimepicker.css" />
+<link type="text/css" rel="stylesheet" href="/SANDPIPER/resources/css/jplayer.pink.flag.css" />
+<style>
+.no-border-on-me>thead>tr>th, .no-border-on-me>tbody>tr>th,
+	.no-border-on-me>tfoot>tr>th, .no-border-on-me>thead>tr>td,
+	.no-border-on-me>tbody>tr>td, .no-border-on-me>tfoot>tr>td {
+	border-top-style: none;
+	border-bottom-style: none;
+}
+</style>
+<style>
+.dropdown-menu {
+	min-width: 0px;
+}
+</style>
+
+<style>
+div.jp-jplayer {
+	border: 1px solid #009be3;
+}
+</style>
+
+
+
+
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+ <link type="text/css" rel="stylesheet" href="/dist/css/font-awesome/css/font-awesome.css" data-th-href="@{/dist/css/font-awesome/css/font-awesome.css}" />
+<link type="text/css" rel="stylesheet" href="/dist/css/cdr-styles.css" data-th-href="@{/dist/css/cdr-styles.css}" />
+ 	
+    <script type="text/javascript" src="/dist/js/reportViewer.min.js" data-th-src="@{/dist/js/reportViewer.min.js}"></script> 
+
+<title>Панель управление</title>
+</head>
+<body>
+	<div id="wrapper">
+		<!-- /#wrapper -->
+		<nav class="navbar navbar-inverse navbar-static-top" style="margin-bottom: 0">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/SANDPIPER/">
+				<span style="margin-left: 4px">Панель управления</span></a>
+			</div>
+			<!-- /.navbar-header -->
+
+			<ul class="nav navbar-top-links navbar-right">
+				<li><a href="/SANDPIPER/"> <i class="fa fa-home fa-fw"></i></a></li>
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+				</a>
+					<ul class="dropdown-menu dropdown-user">
+						<li><a href="#"> <i class="fa fa-user fa-fw"></i> <font color="#049cbd">&nbsp;boss&nbsp;&nbsp;</font>
+						</a></li>
+						<li><a href="/SANDPIPER/account/setting"><i class="fa fa-gear fa-fw"></i>
+								<span style="margin-left: 4px">Настройки</span>
+								</a></li>
+						<li class="divider"></li>
+						<li>
+							<form class="navbar-form" method="post" action="/SANDPIPER/logout">
+								<label for="mySubmit" class="btn"><i class="fa fa-sign-out fa-fw"></i>
+									<span style="margin-left: 4px">Выход</span>
+									</label> <input id="mySubmit" type="submit" value="Go" class="hidden" />
+									<input id="thisUser" type="hidden" value="boss" />
+							</form>
+						</li>
+					</ul> <!-- /.dropdown-user --></li>
+			</ul>
+			<!-- /.navbar-top-links -->
+		</nav>
+		<nav class="navbar-default navbar-static-side side-nav">
+			<div class="sidebar-collapse">
+				<ul class="nav" id="side-menu">
+					<li><br /> <img alt="" src="/SANDPIPER/resources/images/asterisk.png" /></li>
+					<li>
+	<a href="/SANDPIPER/user/list"> <i class="fa fa-gears fa-fw"></i><span style="margin-left: 4px">Справочники</span><span class="fa arrow"></span></a>
+	<ul class="nav nav-second-level">
+		<li><a href="/SANDPIPER/user/list"><i class="fa fa-user"></i><span style="margin-left: 4px">Пользователи</span></a></li>
+	
+		<li><a href="/SANDPIPER/departments/list">
+		<i class="fa  fa-book fa-fw"></i><span style="margin-left: 4px">Телефонная книга</span></a></li>
+		<li><a href="/SANDPIPER/agent/list"><i class="fa fa-users fa-fw"></i><span style="margin-left: 4px">Операторы</span></a></li>
+		<li><a href="/SANDPIPER/queue/list"><i class="fa fa-qrcode"></i><span style="margin-left: 4px">Очереди</span></a></li>
+
+		<li><a href="/SANDPIPER/sipvariable/list"><i class="fa  fa-crosshairs"></i><span style="margin-left: 4px">Параметры SIP</span></a></li>
+		<li><a href="/SANDPIPER/phones/list"><i class="fa fa-phone"></i><span style="margin-left: 4px">Телефоны</span></a></li>
+		<li><a href="/SANDPIPER/dialprefix/list"><i class="fa fa-share-alt"></i><span style="margin-left: 4px">Префиксы</span></a></li>		
+		<li><a href="/SANDPIPER/dialtemplates/list"><i class="fa fa-tablet"></i><span style="margin-left: 4px">Шаблоны</span></a></li>									
+
+
+	</ul> <!-- /.nav-second-level -->
+</li>
+					<li>
+	
+	<a href="/SANDPIPER/user/list"> <i class="fa fa-database fa-fw"></i><span style="margin-left: 4px">Отчеты</span><span class="fa arrow"></span></a>
+	
+	
+	<ul class="nav nav-second-level">
+		<li><a href="/SANDPIPER/cdr/init2"><i class="fa  fa-table"></i>
+		<span style="margin-left: 4px">CDR</span></a></li>
+		<li><a href="/SANDPIPER/cdr/agents"><i class="fa  fa-headphones"></i>
+		<span style="margin-left: 4px">Операторы</span></a></li>
+		<li><a href="/SANDPIPER/cdrqueue/init"> <i class="fa  fa-bar-chart"></i>
+		<span style="margin-left: 4px">Колл-центр</span>
+		</a></li>
+		<li><a href="/SANDPIPER/agentsdaily/init"> <i class="fa  fa-newspaper-o"></i>
+		<span style="margin-left: 4px">Операторы по дням</span>
+		</a></li>
+		<li><a href="/SANDPIPER/dashboard/view"> <i class="fa  fa-tachometer"></i>
+		<span style="margin-left: 4px">Панель управления</span>
+		</a></li>
+		
+	</ul> <!-- /.nav-second-level -->
+</li>
+
+				</ul>
+				<!-- /#side-menu -->
+			</div>
+			<!-- /.sidebar-collapse -->
+		</nav>
+		<input id="sessionTime" type="hidden" value="" />
+		<div id="page-wrapper">
+			<div class="row">
+				<div class="col-xs-12">
+					 <h3 class="page-header"><i class="fa  fa-cog fa-fw"></i><span id="queueInfo">Панель управление</span></h3>
+					<!--  Enf of Button  -->
+					<div class="col-md-9">
+						<div class="panel  panel-primary">
+							<div class="panel-heading">
+							
+							<h4 class="panel-title"><i class="fa fa fa-database fa-fw"></i><span>Отчеты</span></h4>
+					
+							</div>
+
+							<div class="panel-body">
+							  <div class="row">
+				                  <div class="col-md-2">
+				                        <div id="panelCDR" class="panel panel-default" onclick="onClick(&#39;cdr/init2&#39;)" onmouseover="mouseOver(&#39;panelCDR&#39;)" onmouseout="mouseOut(&#39;panelCDR&#39;)">
+				                            <div class="panel-heading">
+				                                <div class="row">
+				                                    <div class="col-md-12 text-center">
+				                                        <i class="fa fa-table fa-3x"></i>
+				                                      </div>
+				                                       <div class="row">  
+				                                          <div class="col-md-12 text-center">
+				                                             <span>CDR</span>
+				                                           </div>  
+				                                    </div>
+				                                </div>
+				                            </div>
+				                           
+				                        </div>
+				                    </div>
+				              	    <div class="col-md-2">
+				                        <div id="panelAgents" class="panel panel-default" onclick="onClick(&#39;cdr/agents&#39;)" onmouseover="mouseOver(&#39;panelAgents&#39;)" onmouseout="mouseOut(&#39;panelAgents&#39;)">
+				                            <div class="panel-heading">
+				                                <div class="row">
+				                                    <div class="col-md-12 text-center">
+				                                        <i class="fa fa-headphones fa-3x"></i>
+				                                      </div>
+				                                       <div class="row">  
+				                                          <div class="col-md-12 text-center">
+				                                             <span>Операторы</span>
+				                                           </div>  
+				                                    </div>
+				                                </div>
+				                            </div>
+				                           
+				                        </div>
+				                    </div>
+   									<div class="col-md-2">
+				                        <div id="panelCallCenter" class="panel panel-default" onclick="onClick(&#39;cdrqueue/init&#39;)" onmouseover="mouseOver(&#39;panelCallCenter&#39;)" onmouseout="mouseOut(&#39;panelCallCenter&#39;)">
+				                            <div class="panel-heading">
+				                                <div class="row">
+				                                    <div class="col-md-12 text-center">
+				                                        <i class="fa fa-bar-chart fa-3x"></i>
+				                                      </div>
+				                                       <div class="row">  
+				                                          <div class="col-md-12 text-center">
+				                                             <span>Колл-центр</span>
+				                                           </div>  
+				                                    </div>
+				                                </div>
+				                            </div>
+				                           
+				                        </div>
+				                    </div>				                    
+									<div class="col-md-2">
+				                        <div id="panelDashboard" class="panel panel-default" onclick="onClick(&#39;dashboard/view&#39;)" onmouseover="mouseOver(&#39;panelDashboard&#39;)" onmouseout="mouseOut(&#39;panelDashboard&#39;)">
+				                            <div class="panel-heading">
+				                                <div class="row">
+				                                    <div class="col-md-12 text-center">
+				                                        <i class="fa fa-tachometer fa-3x"></i>
+				                                      </div>
+				                                       <div class="row">  
+				                                          <div class="col-md-12 text-center">
+				                                             <span>Панель управления</span>
+				                                           </div>  
+				                                    </div>
+				                                </div>
+				                            </div>
+				                           
+				                        </div>
+				                    </div>							                 
+				                  
+				   				</div>
+				
+								
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-md-9">
+						<div class="panel  panel-primary">
+							<div class="panel-heading">
+							
+							<h4 class="panel-title"><i class="fa fa fa-database fa-fw"></i><span>Справочники</span></h4>
+					
+							</div>
+
+							<div class="panel-body">
+							  <div class="row">
+				                  <div class="col-md-2">
+				                        <div id="panelUsers" class="panel panel-default" onclick="onClick(&#39;user/list&#39;)" onmouseover="mouseOver(&#39;panelUsers&#39;)" onmouseout="mouseOut(&#39;panelUsers&#39;)">
+				                            <div class="panel-heading">
+				                                <div class="row">
+				                                    <div class="col-md-12 text-center">
+				                                        <i class="fa fa-user fa-3x"></i>
+				                                      </div>
+				                                       <div class="row">  
+				                                          <div class="col-md-12 text-center">
+				                                             <span>Пользователи</span>
+				                                           </div>  
+				                                    </div>
+				                                </div>
+				                            </div>
+				                           
+				                        </div>
+				                    </div>
+				              	    <div class="col-md-2">
+				                        <div id="panelDeps" class="panel panel-default" onclick="onClick(&#39;departments/list&#39;)" onmouseover="mouseOver(&#39;panelDeps&#39;)" onmouseout="mouseOut(&#39;panelDeps&#39;)">
+				                            <div class="panel-heading">
+				                                <div class="row">
+				                                    <div class="col-md-12 text-center">
+				                                        <i class="fa fa-book fa-3x"></i>
+				                                      </div>
+				                                       <div class="row">  
+				                                          <div class="col-md-12 text-center">
+				                                             <span>Телефонная книга</span>
+				                                           </div>  
+				                                    </div>
+				                                </div>
+				                            </div>
+				                           
+				                        </div>
+				                    </div>
+   									<div class="col-md-2">
+				                        <div id="panelAgentsList" class="panel panel-default" onclick="onClick(&#39;agent/list&#39;)" onmouseover="mouseOver(&#39;panelAgentsList&#39;)" onmouseout="mouseOut(&#39;panelAgentsList&#39;)">
+				                            <div class="panel-heading">
+				                                <div class="row">
+				                                    <div class="col-md-12 text-center">
+				                                        <i class="fa fa-users fa-3x"></i>
+				                                      </div>
+				                                       <div class="row">  
+				                                          <div class="col-md-12 text-center">
+				                                             <span>Операторы</span>
+				                                           </div>  
+				                                    </div>
+				                                </div>
+				                            </div>
+				                           
+				                        </div>
+				                    </div>				                    
+									<div class="col-md-2">
+				                        <div id="panelQueues" class="panel panel-default" onclick="onClick(&#39;queue/list&#39;)" onmouseover="mouseOver(&#39;panelQueues&#39;)" onmouseout="mouseOut(&#39;panelQueues&#39;)">
+				                            <div class="panel-heading">
+				                                <div class="row">
+				                                    <div class="col-md-12 text-center">
+				                                        <i class="fa fa-qrcode fa-3x"></i>
+				                                      </div>
+				                                       <div class="row">  
+				                                          <div class="col-md-12 text-center">
+				                                             <span>Очереди</span>
+				                                           </div>  
+				                                    </div>
+				                                </div>
+				                            </div>
+				                           
+				                        </div>
+				                    </div>							                 
+									<div class="col-md-2">
+				                        <div id="panelSIPparams" class="panel panel-default" onclick="onClick(&#39;sipvariable/list&#39;)" onmouseover="mouseOver(&#39;panelSIPparams&#39;)" onmouseout="mouseOut(&#39;panelSIPparams&#39;)">
+				                            <div class="panel-heading">
+				                                <div class="row">
+				                                    <div class="col-md-12 text-center">
+				                                        <i class="fa fa-crosshairs fa-3x"></i>
+				                                      </div>
+				                                       <div class="row">  
+				                                          <div class="col-md-12 text-center">
+				                                             <span>Параметры SIP</span>
+				                                           </div>  
+				                                    </div>
+				                                </div>
+				                            </div>
+				                           
+				                        </div>
+				                    </div>
+									<div class="col-md-2">
+				                        <div id="panelPhones" class="panel panel-default" onclick="onClick(&#39;phones/list&#39;)" onmouseover="mouseOver(&#39;panelPhones&#39;)" onmouseout="mouseOut(&#39;panelPhones&#39;)">
+				                            <div class="panel-heading">
+				                                <div class="row">
+				                                    <div class="col-md-12 text-center">
+				                                        <i class="fa fa-phone fa-3x"></i>
+				                                      </div>
+				                                       <div class="row">  
+				                                          <div class="col-md-12 text-center">
+				                                             <span>Телефоны</span>
+				                                           </div>  
+				                                    </div>
+				                                </div>
+				                            </div>
+				                           
+				                        </div>
+				                    </div>				                    								                  
+				   				</div>
+								  <div class="row">
+								     <div class="col-md-2">
+				                        <div id="panelPrefix" class="panel panel-default" onclick="onClick(&#39;dialprefix/list&#39;)" onmouseover="mouseOver(&#39;panelPrefix&#39;)" onmouseout="mouseOut(&#39;panelPrefix&#39;)">
+				                            <div class="panel-heading">
+				                                <div class="row">
+				                                    <div class="col-md-12 text-center">
+				                                        <i class="fa fa-share-alt fa-3x"></i>
+				                                      </div>
+				                                       <div class="row">  
+				                                          <div class="col-md-12 text-center">
+				                                             <span>Префиксы</span>
+				                                           </div>  
+				                                    </div>
+				                                </div>
+				                            </div>
+				                           
+				                        </div>
+				                    </div>
+ 									<div class="col-md-2">
+				                        <div id="panelTemplates" class="panel panel-default" onclick="onClick(&#39;dialtemplates/list&#39;)" onmouseover="mouseOver(&#39;panelTemplates&#39;)" onmouseout="mouseOut(&#39;panelTemplates&#39;)">
+				                            <div class="panel-heading">
+				                                <div class="row">
+				                                    <div class="col-md-12 text-center">
+				                                        <i class="fa fa-tablet fa-3x"></i>
+				                                      </div>
+				                                       <div class="row">  
+				                                          <div class="col-md-12 text-center">
+				                                             <span>Шаблоны</span>
+				                                           </div>  
+				                                    </div>
+				                                </div>
+				                            </div>
+				                           
+				                        </div>
+				                    </div>				                    
+								  
+								  </div>
+								
+							</div>
+						</div>
+					</div>
+					
+					
+					<br />
+				
+
+					
+					
+				</div>
+				<!-- /.col-lg-12 -->
+			</div>
+			<!-- /.row -->
+		</div>
+
+		<!-- page wrapper -->
+		<p style="text-align: center">© 2015 LDC</p>
+	</div>
+	<!-- /#wrapper -->
+
+	<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+	
+<script> 
+	  // <![CDATA[
+	     
+	              
+	              
+	    var mouseOver = function(id){
+			$("#" + id).removeClass("panel-default");
+			$("#" + id).addClass("panel-primary");
+	    }       
+	    var mouseOut=function(id){
+	    	$("#" + id).removeClass("panel-primary");
+			$("#" + id).addClass("panel-default");
+	    }
+	   var onClick = function(ref){
+		   window.location.href = '/SANDPIPER/'  + ref;
+	   }
+		$(document).ready(function() {
+			
+			
+			$("#side-menu").metisMenu();
+			
+			
+			$("#panelCDR").hover(function() {
+			    $(this).css('cursor','pointer');
+			}, function() {
+			    $(this).css('cursor','auto');
+			});
+			
+			$("#panelAgents").hover(function() {
+			    $(this).css('cursor','pointer');
+			}, function() {
+			    $(this).css('cursor','auto');
+			});
+			$("#panelCallCenter").hover(function() {
+			    $(this).css('cursor','pointer');
+			}, function() {
+			    $(this).css('cursor','auto');
+			});
+			$("#panelDashboard").hover(function() {
+			    $(this).css('cursor','pointer');
+			}, function() {
+			    $(this).css('cursor','auto');
+			});			
+			$("#panelUsers").hover(function() {
+			    $(this).css('cursor','pointer');
+			}, function() {
+			    $(this).css('cursor','auto');
+			});	
+			$("#panelDeps").hover(function() {
+			    $(this).css('cursor','pointer');
+			}, function() {
+			    $(this).css('cursor','auto');
+			});		
+			$("#panelAgentsList").hover(function() {
+			    $(this).css('cursor','pointer');
+			}, function() {
+			    $(this).css('cursor','auto');
+			});	
+			$("#panelQueues").hover(function() {
+			    $(this).css('cursor','pointer');
+			}, function() {
+			    $(this).css('cursor','auto');
+			});	
+			
+			$("#panelSIPparams").hover(function() {
+			    $(this).css('cursor','pointer');
+			}, function() {
+			    $(this).css('cursor','auto');
+			});	
+			
+			$("#panelPhones").hover(function() {
+			    $(this).css('cursor','pointer');
+			}, function() {
+			    $(this).css('cursor','auto');
+			});
+			
+			$("#panelAgentsList").click(function(){
+				
+				window.location.href = '/SANDPIPER/cdr/agents';
+				
+			});
+			
+			
+// 			$("#panelCDR").mouseover(function(){
+// 				$("#panelCDR").removeClass("panel-default");
+// 				$("#panelCDR").addClass("panel-primary");
+// 			});
+// 			$("#panelCDR").mouseout(function(){
+// 				$("#panelCDR").removeClass("panel-primary");
+// 				$("#panelCDR").addClass("panel-default");
+// 			});
+// 			$("#panelCDR").click(function(){
+				
+// 				window.location.href = '/SANDPIPER/cdr/init2';
+				
+// 			});
+			
+			
+			var getCurrentDate = function(){
+				var today = new Date();
+				var dd = today.getDate();
+				var mm = today.getMonth()+1; //January is 0!
+				var yyyy = today.getFullYear();
+				if(dd<10) {
+				    dd='0'+dd
+				} 
+				if(mm<10) {
+				    mm='0'+mm
+				} 
+				today = dd + '.'+ mm + '.' + yyyy;
+				return today;
+			}
+		
+		});
+		
+		// ]]>	
+	</script>	
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head  th:include="report-headers :: links"></head>      
+
+<body >
+<div id="wrapper">
+<div id="wait_dialog" class="alert alert-success wait-dialog hidden" role="alert">
+    	<img class="image-rotate" src="src/img/rotate.gif" width="50" height="50"  />
+     	<span th:text="#{message.pleaseWait}">Please wait</span>
+</div>	
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+   <div class="container-fluid"> 	
+      <div class="navbar-header">
+          <span class="navbar-brand">Asterionix | Report Viewer</span>
+       </div>
+        <div id="navbar" class="collapse navbar-collapse">
+        	<div  class="navbar-btn" >
+             
+             	 <div class="pull-right">
+	         	  <span id="connectedSate" th:text="${currentUser}" > username </span> 
+	         	 
+	         	  <button id="btnLogout" type="button" class="btn btn-danger" onclick="reports.logout()" th:text="#{button.logout}"> Logout</button>
+	         	   
+	         	 </div> 
+         	  </div>
+         
+        </div><!--/.nav-collapse -->
+	</div>
+ </nav>
+         <!-- /#sidebar-wrapper -->
+        
+		<nav class="navbar-default navbar-static-side side-nav">
+			<div class="sidebar-collapse">
+				<ul class="nav" id="menu">
+					<li class="active">					
+						<a href="#" aria-expanded="false"> <i class="fa fa-file-text fa-fw"></i><span style="margin-left: 4px" th:text="#{label.reports}">Reports</span><span class="fa arrow"></span></a>
+						 <ul class="nav nav-second-level" aria-expanded="false">
+							<li><a href="#sub01" onclick="reports.setHeader('sub01')"><i class="fa fa-database fa-fw"></i><span style="margin-left: 4px" th:text="#{label.cdr}">CDR</span></a></li>
+							<li><a href="#sub02" onclick="reports.setHeader('sub02')"><i class="fa fa-bullseye fa-fw"></i><span style="margin-left: 4px" th:text="#{label.queue}">QDR</span></a></li>
+							<li><a href="#sub03" onclick="reports.setHeader('sub03')"><i class="fa  fa-search fa-fw"></i><span style="margin-left: 4px" th:text="#{label.search}">Search</span></a></li>
+							
+						</ul> <!-- /.nav-second-level -->
+					</li>
+					<li >
+						
+					<a href="#" aria-expanded="false"> <i class="fa fa-gears fa-fw"></i><span style="margin-left: 4px" th:text="#{label.settings}">Reports</span><span class="fa arrow"></span></a>
+						<ul class="nav nav-second-level" aria-expanded="false">
+							<li><a href="#sub04" onclick="reports.setHeader('sub04')"><i class="fa fa-users fa-fw"></i><span style="margin-left: 4px" th:text="#{label.agents}">Agents</span></a></li>
+							<li><a href="#sub05" onclick="reports.setHeader('sub05')"><i class="fa fa-phone-square fa-fw"></i><span style="margin-left: 4px" th:text="#{label.phones}">Phones</span></a></li>
+							<li><a href="#sub06" onclick="reports.setHeader('sub06')"> <i class="fa fa-bullseye fa-fw"></i><span style="margin-left: 4px" th:text="#{label.queues}">Queues</span></a></li>
+							<li><a href="#sub07" onclick="reports.setHeader('sub07')"> <i class="fa fa-user fa-fw"></i><span style="margin-left: 4px" th:text="#{label.users}">Users</span></a></li>
+							<li><a href="#sub08" onclick="reports.setHeader('sub08')"> <i class="fa fa-user fa-fw"></i><span style="margin-left: 4px" th:text="#{label.customers}">Customers</span></a></li>
+						</ul> 
+						</li>
+					
+					</ul>
+				<!-- /#side-menu -->
+			</div>
+			<!-- /.sidebar-collapse -->
+		</nav>
+
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h1 id="report_header" class="report-header">Reports</h1>
+                        <hr/>
+                         <div class="tab-content">
+                           <div class="tab-pane fade active in" id="sub01" >
+                        	  <div  th:include="cdrs :: cdr" ></div>
+                           </div>	 
+                           <div class="tab-pane fade " id="sub02">
+                        	  <div  th:include="queues :: queue" ></div>
+                          </div>
+                         
+                           <div class="tab-pane fade" id="sub03">
+		                        <div th:include="searches :: search" ></div>
+		                    </div>
+		                      <div class="tab-pane fade" id="sub04">
+		                        <div th:include="agents :: agent" ></div>
+		                    </div>
+		                      <div class="tab-pane fade" id="sub05">
+		                        <div th:include="phones :: phone" ></div>
+		                    </div>
+		                      <div class="tab-pane fade" id="sub06">
+		                        <div th:include="courses :: course" ></div>
+		                    </div>
+		                      <div class="tab-pane fade" id="sub07">
+		                        <div th:include="users :: user" ></div>
+		                    </div>
+		                       <div class="tab-pane fade" id="sub08">
+		                        <div th:include="customers :: customer" ></div>
+		                    </div>
+		                    
+		                    
+                         </div> 	
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+<div id="push"><!--  --></div>
+   </div>
+    <!-- /#wrapper -->  
+<div id="footer">
+     <div class="col-lg-12 text-center ">
+        <p class="row-footer">Asterionix&nbsp;&copy;&nbsp;2016</p>
+     </div>
+ </div>  
+
+
+<noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being enabled. Please enable
+    Javascript and reload this page!</h2></noscript>
+<script th:inline="javascript"> 
+// <![CDATA[
+ 
+// ]]>	
+</script>             
+	             
+
+	             
+</body>
+</html>

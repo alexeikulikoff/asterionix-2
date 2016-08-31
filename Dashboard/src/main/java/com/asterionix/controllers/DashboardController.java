@@ -183,21 +183,7 @@ public class DashboardController extends AbstractDashBoard implements DashBoard{
 	    	return null;
 	    }
 	 }
-/*	  @RequestMapping("/scoreboard")
-	  public String scoreboardView(Model model) {
-		  
-		  String license="QWGFF-HBGHG-HKRT-GHBN-VBHJ-KZXCV-BNUJ-FGHJK-YHBRF-CQAZ-PJHS";
-		  
-	      model.addAttribute("configError", true);
-	      if (props.getLicense().equals(license)){
-	    	   model.addAttribute("license_demo", true);  
-	    	   licensed = true;
-	      }else{
-	    	  model.addAttribute("license_demo", false);  
-	      }
-  	  return "scoreboard";
-	  }
-*/	 
+
 	  @RequestMapping("/view")
 	  public String dashboardView(Model model, HttpSession session) {
 

@@ -6,3 +6,5 @@ AGI Server has to be referenced from Asterisk dialplan and allows: to handle age
 Live Dashboard represents call center activity process. It shows allocation of agents between queus and agent's real state. In addition by means of Dashboard agents may do manual callback to Customers whose calls have not been answered by some reasons.
 
 Report Viewer includes Call Detailed Records report, report for agents and queues. All reports are used with sound player.
+
+![alt tag](http://asterionix.com/img/pics/dashboard-7-big.jpg)

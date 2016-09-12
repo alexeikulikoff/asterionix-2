@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -156,31 +157,35 @@ public class DashboardController extends AbstractDashBoard implements DashBoard{
 	
 	  }
 	  @RequestMapping("/")
-	  public String dashboardViewRoot(Model model) {
+	  public String dashboardViewRoot(Model model, HttpSession session) {
 		  
-		  String license="QWGFF-HBGHG-HKRT-GHBN-VBHJ-KZXCV-BNUJ-FGHJK-YHBRF-CQAZ-PJHS";
-		  
-	      model.addAttribute("configError", true);
-	      if (props.getLicense().equals(license)){
-	    	   model.addAttribute("license_demo", true);  
-	    	   licensed = true;
-	      }else{
-	    	  model.addAttribute("license_demo", false);  
-	      }
+	
+				  session.setMaxInactiveInterval(Integer.MAX_VALUE);
+				  
+				  logger.info("Session max interval: [" + session.getMaxInactiveInterval() + "]");
+	
+				  model.addAttribute("configError", true);
+
+				
+			      model.addAttribute("license_demo", true);  
+			      licensed = true;
+			      
   	  return "scoreboard";
 	  }
 	  @RequestMapping("/view")
-	  public String dashboardView(Model model) {
+	  public String dashboardView(Model model,HttpSession session) {
+
+		
 		  
-		  String license="QWGFF-HBGHG-HKRT-GHBN-VBHJ-KZXCV-BNUJ-FGHJK-YHBRF-CQAZ-PJHS";
+		  session.setMaxInactiveInterval(Integer.MAX_VALUE);
 		  
-	      model.addAttribute("configError", true);
-	      if (props.getLicense().equals(license)){
-	    	   model.addAttribute("license_demo", true);  
-	    	   licensed = true;
-	      }else{
-	    	  model.addAttribute("license_demo", false);  
-	      }
+		  logger.info("Session max interval: [" + session.getMaxInactiveInterval() + "]");
+			
+		
+		  model.addAttribute("configError", true);
+
+		
+	      model.addAttribute("license_demo", true);  
   	  return "scoreboard";
 	  }
 	  @RequestMapping("/addToQueue")

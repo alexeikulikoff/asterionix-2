@@ -7,7 +7,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.asterionix.controllers.DashboardController;
+
 import com.asterionix.exception.AgentNotFoundException;
 
 public class QueueContainer {

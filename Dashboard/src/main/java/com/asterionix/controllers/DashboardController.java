@@ -191,7 +191,7 @@ public class DashboardController extends AbstractDashBoard implements DashBoard{
 	      
 		  Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		  
-		  session.setMaxInactiveInterval(9999999);
+		  session.setMaxInactiveInterval(Integer.MAX_VALUE);
 		  logger.info("Session max interval: [" + session.getMaxInactiveInterval() + "]");
 			
 		  currentUser = (CustomUserDetails) auth.getPrincipal();
@@ -202,6 +202,7 @@ public class DashboardController extends AbstractDashBoard implements DashBoard{
 
 		
 	      model.addAttribute("license_demo", true);  
+	      
 	      licensed = true;
 	    
   	  return "dashboard";

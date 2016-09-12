@@ -5,7 +5,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 
-import com.asterionix.controllers.DashboardController;
+
 import com.asterionix.controllers.custom.AsteriskDisconnectHandler;
 import com.asterionix.controllers.custom.AsteriskLogoffEvent;
 import com.asterionix.controllers.response.LogOffAction;

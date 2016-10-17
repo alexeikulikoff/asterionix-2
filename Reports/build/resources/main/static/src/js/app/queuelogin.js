@@ -27,8 +27,9 @@ queuelogin.createPlayer = function(data){
 	var curURL = window.location.href;
 	var ind = curURL.lastIndexOf("/");
 	var ur = curURL.substring(0,ind+1);
-	var sound_url = ur + 'sounds/' +  sound_file;
+	//var sound_url = ur + 'sounds/' +  sound_file;
 	
+	var sound_url = "http://asterisk.sound.host/sounds_mp3/" + sound_file;
 	
 	var stopId = "#qstop-" +sound_file;
 	var playId = "#qplay-" +sound_file;

@@ -67,7 +67,7 @@ appgui.stop = function(){
 }
 appgui.logout = function(){
 	appgui.stop();
-	location.href = "/asterionix-dashboard/login?logout";
+	location.href = "/dashboard/login?logout";
 }
 appgui.createPlayer = function(data){
 	
@@ -643,7 +643,7 @@ appgui.connect = function(){
 	
 	headers[core.gcsrf().headerName] = core.gcsrf().token;
 	
-	var socket = new SockJS('/asterionix-dashboard/messages');
+	var socket = new SockJS('/dashboard/messages');
 	appgui.stompClient = Stomp.over(socket);            
 	appgui.stompClient.connect(headers, function(frame) {
 		appgui.stompClient.subscribe('/topic/greetings', function(greeting){

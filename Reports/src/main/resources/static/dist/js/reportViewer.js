@@ -3174,7 +3174,7 @@ reports.setHeader = function(d){
 }
 reports.logout = function(){
 	
-	location.href = "/asterionix-reports/login?logout";
+	location.href = "/reports/login?logout";
 	
 }
 reports.hideCGRPanel = function(){
@@ -3442,8 +3442,10 @@ reports.createPlayer = function(data){
 	var curURL = window.location.href;
 	var ind = curURL.lastIndexOf("/");
 	var ur = curURL.substring(0,ind+1);
-	var sound_url = ur + 'sounds/' + sound_file;
+	//var sound_url = ur + 'sounds/' + sound_file;
 	
+	var sound_url = "http://asterisk.sound.host/sounds_mp3/" + sound_file;
+		
 	var stopId = "#stop-" +sound_file;
 	var playId = "#play-" +sound_file;
 	
@@ -3571,8 +3573,9 @@ queuelogin.createPlayer = function(data){
 	var curURL = window.location.href;
 	var ind = curURL.lastIndexOf("/");
 	var ur = curURL.substring(0,ind+1);
-	var sound_url = ur + 'sounds/' +  sound_file;
+	//var sound_url = ur + 'sounds/' +  sound_file;
 	
+	var sound_url = "http://asterisk.sound.host/sounds_mp3/" + sound_file;
 	
 	var stopId = "#qstop-" +sound_file;
 	var playId = "#qplay-" +sound_file;

@@ -72,7 +72,7 @@ activeTable.joinCall = function(e){
 			data.bridgestate='join';
 			data.callback = 'no';
 			table.row.add(data).draw();
-			//table.row(3).remove().draw();
+		
 		}
 		
 	}
@@ -137,8 +137,15 @@ activeTable.bridgeCall = function(e){
  		
  		unansweredCalls =  parseInt($("#unanswered-calls").text());
  		
+ 		
  		unansweredCalls = unansweredCalls - 1;
+ 		
  		$("#unanswered-calls").text(unansweredCalls);
+ 		
+ 		if (unansweredCalls < 0){
+ 			$("#unanswered-calls").text("0");
+ 		}
+ 	
  		
  		
  	}

@@ -8,21 +8,13 @@ import com.asterionix.controllers.dashboard.DashBoard;
 import com.asterionix.controllers.response.AsteriskResponse;
 
 public class DashBoardEventListener {
-
-	private ExecutorService executor;
-	
 	private DashBoard target;
-
 	public DashBoardEventListener(DashBoard target){
-		
 		this.target = target;
-		
-		executor =  Executors.newCachedThreadPool();
-		
 		
 	}
 	public void dispatchEvent(AsteriskEvent event){
-	
+		ExecutorService  executor =  Executors.newCachedThreadPool();
 		executor.execute(new Runnable(){
 			@Override
 			public void run() {
@@ -30,9 +22,11 @@ public class DashBoardEventListener {
 			}
 				
 		});
+		executor.shutdown();
 		
 	}
 	public void dispatchEvent(AsteriskResponse response){
+		ExecutorService  executor =  Executors.newCachedThreadPool();
 		executor.execute(new Runnable(){
 			@Override
 			public void run() {
@@ -40,6 +34,7 @@ public class DashBoardEventListener {
 			}
 			
 		});
+		executor.shutdown();
 	}		
 	
 
